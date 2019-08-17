@@ -11,6 +11,18 @@ spring的学习
 	3. IOC概念和spring的IOC
 		a. spring中的XML的IOC环境搭建
 依赖注入
+	1. 什么是spring
+		a. spring是分层的JavaSE/EE应用full-stack轻量级开源框架,以IOC(反转控制)和AOP(面向切面编程)为内核提供了展现层springMVC和持久层JDBC以及业务层事务管理层等众多的企业级应用技术,还能整合开源世界的众多第三方框架和库类.
+	2. spring发展历程
+		a. 了解
+	3. spring优势
+		a. 方便解耦,简化开发
+		b. AOP编程的支持
+		c. 声明式事务的支持
+		d. 方便程序的测试
+		e. 方便集成各种优秀框架
+		f. 降低javaEE API的使用难度
+Java源码是学习范例
 程序的耦合
 什么是程序的耦合：
 	 程序间的依赖关系
