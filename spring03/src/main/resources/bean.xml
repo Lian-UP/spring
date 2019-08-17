@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--把对象的创建交给spring处理-->
+    <bean id="biz" class="biz.impl.TestServiceImpl"></bean>
+
+    <bean id="dao" class="dao.impl.TestDaoImpl"></bean>
+</beans>
