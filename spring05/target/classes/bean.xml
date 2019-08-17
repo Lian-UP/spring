@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--spring的依赖注入
+            Dependency Injection
+        IOC作用:
+            降低耦合(依赖关系)
+         依赖关系的管理
+            交给spring来维护
+            当前类中需要调用其他类的对象,有spring为我们提供,我们只需要在配置文件中声明
+         依赖关系的维护:
+            就称之为依赖注入
+          依赖注入:
+            注入的数据有三类
+                基本类型和String
+                其他bean
+                复杂类型/集合类型
+             注入方式三种:
+                构造函数
+                set方法
+                注解
+        -->
+    <!--构造函数注入
+        使用 constructor-arg标签
+        标签放在bean的内部
+        标签的属性:
+            type:指定数据类型,该数据类型也是构造函数中的某个或某些参数的类型
+            index:用于指定要注入的数据给构造函数中指定索引位置的参数赋值,索引位置从0开始
+            nama:用于指定给构造函数中指定名称的参数赋值  常用
+            以上三个用于指定给构造函数中哪个参数赋值
+            value:给基本类型String类型提供数据
+            ref:指定其他bean类型数据,引用的是id后面的名称
+            优势:
+                在获取bean对象时,注入数据是必须的操作,否则对象无法创建成功
+            弊端:
+                改变了bean对象实例化方式,我们用不到这些参数时也必须提供
+    -->
+    <bean id="biz" class="biz.impl.TestServiceImpl" >
+        <constructor-arg name="name" value="张三"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <constructor-arg name="brithday"  ref="date" ></constructor-arg>
+    </bean>
+    <bean id="date" class="java.util.Date"></bean>
+    <!--set方法注入 常用
+        使用的标签:property
+        位置:bean内部
+        属性:
+            name:用于指定给构造函数中指定名称的参数赋值
+            value:给基本类型String类型提供数据
+            ref:指定其他bean类型数据,引用的是id后面的名称
+        优势:
+            创建对象时没有明确的限制,可以之间使用默认构造函数
+        弊端:
+            如果有某个成员必须有值,则获取对象时set方法可能没有执行
+    -->
+    <bean id="biz2" class="biz.impl.TestServiceImpl2" >
+        <property name="age" value="17"></property>
+        <property name="name" value="张三"></property>
+        <property name="brithday" ref="date"></property>
+    </bean>
+    <!--复杂类型 数组集合 properties 的注入-->
+    <bean id="biz3" class="biz.impl.TestServiceImpl3" >
+       <property name="strs">
+           <array>
+               <value>a</value>
+               <value>bb</value>
+               <value>ccc</value>
+           </array>
+       </property>
+        <property name="list">
+            <list>
+                <value>A</value>
+                <value>BB</value>
+                <value>CCC</value>
+            </list>
+        </property>
+        <property name="maps">
+            <map>
+               <entry key="1" value="A"></entry>
+                <entry key="2" >
+                    <value>BB</value>
+                </entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="1">vvv</prop>
+                <prop key="2">ddd</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
