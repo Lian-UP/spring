@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd" >
+    <!--扫描注解-->
+    <!--<context:component-scan base-package="com"></context:component-scan>-->
+    <!--service层-->
+    <bean id="schoolBiz" class="com.biz.impl.SchoolBizImp">
+        <!--引用dao层-->
+        <property name="schoolDao" ref="schoolDao"></property>
+    </bean>
+    <!--配置dao层-->
+    <bean id="schoolDao" class="com.dao.impl.SchoolDaoImpl">
+        <!--引用runner-->
+        <property name="queryRunner" ref="runner"></property>
+    </bean>
+    <!--创建runner-->
+    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
+        <!--引用数据源-->
+        <constructor-arg name="ds" ref="dateSource"></constructor-arg>
+    </bean>
+    <!--创建数据源-->
+    <bean id="dateSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/book?serverTimezone=UTC"></property>
+        <property name="user" value="lian"></property>
+        <property name="password" value="lian"></property>
+    </bean>
+
+</beans>
